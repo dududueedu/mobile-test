@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
 
         botao1.setOnClickListener(object : View.OnClickListener{
             override fun onClick(v: View?) {
-                Toast.makeText(applicationContext, campo1.text.toString() + " é lindo e se garante!!!", Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext, campo1.text.toString() + " você é capaz, acredite!!!", Toast.LENGTH_LONG).show()
 
                 //chamada para tela2
                 setContentView(R.layout.second_screen)
