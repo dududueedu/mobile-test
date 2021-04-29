@@ -10,9 +10,14 @@ class MainActivity : AppCompatActivity() {
     lateinit var campo1: EditText
     lateinit var botao1: Button
     //
+    lateinit var texto: TextView
+    lateinit var seekBar: SeekBar
+    lateinit var botao2: Button
+    //
     lateinit var textoRatingBar: TextView
     lateinit var ratingBar: RatingBar
-    lateinit var botao2: Button
+    lateinit var botao3: Button
+    //
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,18 +30,35 @@ class MainActivity : AppCompatActivity() {
             override fun onClick(v: View?) {
                 Toast.makeText(applicationContext, campo1.text.toString() + " você é capaz, acredite!!!", Toast.LENGTH_LONG).show()
 
-                //chamada para tela2
-                setContentView(R.layout.second_screen)
-                textoRatingBar = findViewById(R.id.textRatingBar)
-                ratingBar = findViewById(R.id.ratingBar)
-                botao2 = findViewById(R.id.button)
+                setContentView(R.layout.screen2)
+                texto = findViewById(R.id.textSeek)
+                seekBar = findViewById(R.id.seekBar)
+                botao2 = findViewById(R.id.button2)
 
-                textoRatingBar.text = "Avalie:"
-                ratingBar.setOnRatingBarChangeListener{ratingBar, rating, fromUser -> rating
-                    textoRatingBar.text = "Avalie: "+rating
-                }
+                seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
+                    override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                        texto.text = "" + progress
+                    }
+
+                    override fun onStartTrackingTouch(seekBar01: SeekBar?) {}
+
+                    override fun onStopTrackingTouch(seekBar01: SeekBar?) {}
+                })
                 botao2.setOnClickListener{
-                    Toast.makeText(applicationContext, "Sua avaliação foi "+ratingBar.rating, Toast.LENGTH_LONG).show()
+                    Toast.makeText(applicationContext, "Nível de Felicidade: "+ seekBar.progress, Toast.LENGTH_LONG).show()
+                    //chamada para tela3
+                    setContentView(R.layout.second_screen)
+                    textoRatingBar = findViewById(R.id.textRatingBar)
+                    ratingBar = findViewById(R.id.ratingBar)
+                    botao3 = findViewById(R.id.button)
+
+                    textoRatingBar.text = "Avalie nosso App:"
+                    ratingBar.setOnRatingBarChangeListener{ratingBar, rating, fromUser -> rating
+                        textoRatingBar.text = "Avalie: "+rating
+                    }
+                    botao3.setOnClickListener{
+                        Toast.makeText(applicationContext, "Sua avaliação foi "+ratingBar.rating, Toast.LENGTH_LONG).show()
+                    }
                 }
             }
         })
