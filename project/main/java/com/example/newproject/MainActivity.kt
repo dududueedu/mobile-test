@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.*
+import kotlin.concurrent.thread
+import kotlin.concurrent.timer
 
 class MainActivity : AppCompatActivity() {
 
@@ -30,7 +32,7 @@ class MainActivity : AppCompatActivity() {
             override fun onClick(v: View?) {
                 Toast.makeText(applicationContext, campo1.text.toString() + " você é capaz, acredite!!!", Toast.LENGTH_LONG).show()
 
-                setContentView(R.layout.screen2)
+                setContentView(R.layout.screensecond)
                 texto = findViewById(R.id.textSeek)
                 seekBar = findViewById(R.id.seekBar)
                 botao2 = findViewById(R.id.button2)
@@ -47,7 +49,7 @@ class MainActivity : AppCompatActivity() {
                 botao2.setOnClickListener{
                     Toast.makeText(applicationContext, "Nível de Felicidade: "+ seekBar.progress, Toast.LENGTH_LONG).show()
                     //chamada para tela3
-                    setContentView(R.layout.second_screen)
+                    setContentView(R.layout.screenthree)
                     textoRatingBar = findViewById(R.id.textRatingBar)
                     ratingBar = findViewById(R.id.ratingBar)
                     botao3 = findViewById(R.id.button)
@@ -57,7 +59,8 @@ class MainActivity : AppCompatActivity() {
                         textoRatingBar.text = "Avalie: "+rating
                     }
                     botao3.setOnClickListener{
-                        Toast.makeText(applicationContext, "Sua avaliação foi "+ratingBar.rating, Toast.LENGTH_LONG).show()
+                        Toast.makeText(applicationContext, "Sua avaliação foi "+ratingBar.rating +", obrigado!", Toast.LENGTH_LONG).show()
+                        //Thread.sleep(3000)
                     }
                 }
             }
